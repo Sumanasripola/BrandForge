@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path: ".env.local" });
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -11,23 +12,28 @@ app.post("/generate-logo", async (req, res) => {
   try {
     const { name, industry, tone } = req.body;
 
-    const prompt = `Minimalist flat vector logo, simple geometric brand icon, modern startup logo, white background, no text, clean design for ${name} in ${industry}, tone ${tone}`;
+    const prompt = `Minimalist flat vector logo, simple geometric brand icon, professional startup logo, white background, no text, for ${name} in ${industry}, tone ${tone}, clean design`;
 
     const hfResponse = await fetch(
-      "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.HF_API_KEY}`,
-          "Content-Type": "application/json",
-          "x-use-cache": "false"
-        },
-        body: JSON.stringify({
-          inputs: prompt,
-          options: { wait_for_model: true }
-        }),
-      }
-    );
+        "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${process.env.HF_API_KEY}`,
+            "Content-Type": "application/json",
+            "x-use-cache": "false"
+          },
+          body: JSON.stringify({
+            inputs: prompt,
+            options: { wait_for_model: true }
+          }),
+        }
+      );
+
+
+    if (hfResponse.status === 503) {
+      return res.status(503).json({ error: "Model waking up. Retry in 15 seconds." });
+    }
 
     if (!hfResponse.ok) {
       const errText = await hfResponse.text();
@@ -44,4 +50,10 @@ app.post("/generate-logo", async (req, res) => {
     console.error("SERVER ERROR:", err);
     res.status(500).json({ error: "Server crashed" });
   }
+});
+
+// 🚀 THIS PART IS CRITICAL
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log(`HF Logo server running on port ${PORT}`);
 });

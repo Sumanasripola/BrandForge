@@ -152,56 +152,15 @@ export const generateBrandIdentity = async (inputs: BrandInputs): Promise<BrandR
 };
 
 export const generateLogo = async (name: string, industry: string, tone: string): Promise<string> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-  
-  const prompt = `Create a professional branding logo for "${name}". 
-  Industry: ${industry}. 
-  Tone: ${tone}. 
-  Visual Style: Modern minimalist vector mark, isolated on white background. Clean geometric iconography and elegant typography. 
-  Technical specs: High contrast, centered, professional graphic design.`;
+  const res = await fetch("http://localhost:3001/generate-logo", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, industry, tone }),
+  });
 
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image',
-      contents: {
-        parts: [{ text: prompt }]
-      },
-      config: {
-        imageConfig: {
-          aspectRatio: "1:1"
-        }
-      }
-    });
+  if (!res.ok) throw new Error("Logo generation failed");
 
-    if (!response.candidates || response.candidates.length === 0) {
-      throw new Error("The AI did not return any candidates. This often happens due to safety filters or quota limits on free API keys.");
-    }
-
-    const candidate = response.candidates[0];
-    
-    if (candidate.finishReason === 'SAFETY') {
-      throw new Error("The logo generation was blocked by safety filters. Try a different brand name or industry.");
-    }
-
-    if (!candidate.content?.parts) {
-      throw new Error("The AI response was empty. Please check your internet connection or API quota.");
-    }
-
-    for (const part of candidate.content.parts) {
-      if (part.inlineData) {
-        return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-      }
-    }
-
-    throw new Error("The AI returned text but no image data. Please try again.");
-  } catch (err: any) {
-    console.error("Logo Generation Detailed Error:", err);
-    if (err.message?.includes('429')) {
-      throw new Error("Rate limit exceeded. Please wait a minute before trying again.");
-    }
-    if (err.message?.includes('404')) {
-      throw new Error("Model not found. Image generation might not be available in your region with a free key.");
-    }
-    throw err;
-  }
+  const data = await res.json();
+  return data.image;
 };
+
