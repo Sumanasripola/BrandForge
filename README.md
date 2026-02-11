@@ -5,63 +5,63 @@ BrandForge is a full-stack AI-powered branding engine that helps startups and sm
 
 It eliminates the need for expensive branding agencies by combining:
 
-- 🧠 Strategic brand reasoning (Gemini AI)
-- 🎨 AI logo generation (Stable Diffusion via HuggingFace)
-- 🚀 Automated marketing kit creation
-- 🏛 Brand archetype & persona modeling
+* 🧠 Strategic brand reasoning (Gemini AI)
+* 🎨 AI logo generation (Stable Diffusion via HuggingFace)
+* 🚀 Automated marketing kit creation
+* 🏛 Brand archetype & persona modeling
 
 ---
 
 ## 🚀 Features
 
 ### 💎 Identity Core
-- Brand positioning statement  
-- Brand interpretation & justification  
-- Mission & Vision  
-- 5 AI-generated brand names with logic  
-- 5 strategic taglines  
+* Brand positioning statement  
+* Brand interpretation & justification  
+* Mission & Vision  
+* 5 AI-generated brand names with logic  
+* 5 strategic taglines  
 
 ### 🧠 Strategy & Persona
-- Ideal customer persona  
-- Core goals & pain points  
-- Discovery channels  
-- Brand archetype  
-- Voice & tone guide  
-- Writing rules + power words  
+* Ideal customer persona  
+* Core goals & pain points  
+* Discovery channels  
+* Brand archetype  
+* Voice & tone guide  
+* Writing rules + power words  
 
 ### 🎨 Visual Studio
-- AI-generated logos (Stable Diffusion XL)
-- Color palette with hex codes
-- Emotional reasoning for each color
-- Visual moodboard direction
+* AI-generated logos (Stable Diffusion XL)
+* Color palette with hex codes
+* Emotional reasoning for each color
+* Visual moodboard direction
 
 ### 🚀 Marketing Kit
-- Instagram bio
-- Twitter bio
-- LinkedIn bio
-- Launch post (carousel structured)
-- Engagement post (poll format)
-- 10 SEO hashtags
+* Instagram bio
+* Twitter bio
+* LinkedIn bio
+* Launch post (carousel structured)
+* Engagement post (poll format)
+* 10 SEO hashtags
 
 ---
 
 # 🛠 Tech Stack
 
 ## Frontend
-- React 19
-- TypeScript
-- Vite
+* React 19
+* TypeScript
+* Vite
 
 ## Backend
-- Node.js
-- Express
-- CORS
-- dotenv
+* Node.js
+* Express
+* CORS
+* dotenv
 
 ## AI Integration
-- Google Gemini (`@google/genai`)
-- HuggingFace Stable Diffusion XL
-- Structured JSON schema enforcement
+* Google Gemini (`@google/genai`)
+* HuggingFace Stable Diffusion XL
+* Structured JSON schema enforcement
 
 ---
 
@@ -163,29 +163,30 @@ BrandForge/
 ├── types.ts           # TypeScript interfaces
 ├── vite.config.ts     # Vite configuration
 └── package.json
+```
 
 ---
 
 # 🔐 Security Notes
 
-- API keys stored in `.env.local`
-- HuggingFace call handled server-side
-- No secret exposure to frontend
+* API keys stored in `.env.local`
+* HuggingFace call handled server-side
+* No secret exposure to frontend
 
 ---
 
 # 📈 Business Impact
 
 BrandForge reduces:
-- Branding agency costs
-- Time-to-market
-- Strategy planning overhead
+* Branding agency costs
+* Time-to-market
+* Strategy planning overhead
 
 It empowers:
-- Solo founders
-- Startups
-- Small businesses
-- Indie makers
+* Solo founders
+* Startups
+* Small businesses
+* Indie makers
 
 ---
 
