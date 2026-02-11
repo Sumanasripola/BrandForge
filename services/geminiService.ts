@@ -151,16 +151,43 @@ export const generateBrandIdentity = async (inputs: BrandInputs): Promise<BrandR
   return JSON.parse(text) as BrandResult;
 };
 
-export const generateLogo = async (name: string, industry: string, tone: string): Promise<string> => {
-  const res = await fetch("http://localhost:3001/generate-logo", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, industry, tone }),
-  });
+export const generateLogo = async (
+  name: string,
+  industry: string,
+  tone: string
+): Promise<string> => {
+  try {
+    const response = await fetch("http://localhost:3001/generate-logo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        industry,
+        tone,
+      }),
+    });
 
-  if (!res.ok) throw new Error("Logo generation failed");
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(
+        errorData?.error || `Logo generation failed (${response.status})`
+      );
+    }
 
-  const data = await res.json();
-  return data.image;
+    const data = await response.json();
+
+    if (!data?.image) {
+      throw new Error("Invalid logo response from server");
+    }
+
+    return data.image;
+
+  } catch (error: any) {
+    console.error("Logo Generation Error:", error);
+    throw new Error(error.message || "Logo generation failed");
+  }
 };
+
 

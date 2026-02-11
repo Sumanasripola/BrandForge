@@ -52,7 +52,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-100 text-slate-900 pb-20">
+
       {showQuiz && (
         <BrandQuiz 
           onComplete={handleQuizComplete} 
@@ -61,17 +62,20 @@ const App: React.FC = () => {
       )}
 
       {/* Hero Section */}
-      <header className="relative bg-white border-b border-slate-200 pt-16 pb-24 overflow-hidden">
+      <header className="relative bg-indigo-900 text-white pt-16 pb-24 overflow-hidden">
+
+
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-50/50 rounded-full blur-3xl -z-10"></div>
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-6">
             <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-pulse"></span>
-            BrandCraft 2.0 - The Startup Branding OS
+            BrandForge - The Startup Branding OS
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-6">
-            Brand<span className="text-indigo-600">Craft</span>
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
+
+            BrandForge
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
             Professional brand strategy, customer personas, and marketing kits powered by advanced AI reasoning.
           </p>
         </div>
@@ -453,7 +457,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-center items-center gap-2 mb-6">
             <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-black text-xl">B</div>
-            <span className="font-black text-slate-900 text-2xl tracking-tighter uppercase">BrandCraft</span>
+            <span className="font-black text-slate-900 text-2xl tracking-tighter uppercase">BrandForge</span>
           </div>
           <p className="mb-6 max-w-sm mx-auto text-sm leading-relaxed">&copy; {new Date().getFullYear()} Startup Branding Automation Engine. Built for the next generation of founders.</p>
           <div className="flex justify-center gap-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">

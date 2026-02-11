@@ -1,8 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config({ path: ".env.local" });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables
+dotenv.config({ path: path.join(__dirname, "../.env.local") });
 
 const app = express();
 app.use(cors());
@@ -12,33 +18,60 @@ app.post("/generate-logo", async (req, res) => {
   try {
     const { name, industry, tone } = req.body;
 
-    const prompt = `Minimalist flat vector logo, simple geometric brand icon, professional startup logo, white background, no text, for ${name} in ${industry}, tone ${tone}, clean design`;
+    const prompt = `
+Minimal flat vector icon logo.
+No text.
+No letters.
+No words.
+
+Centered geometric symbol.
+White background.
+Solid colors only.
+Modern SaaS startup style.
+Dribbble style icon.
+Clean negative space.
+Simple shape.
+High contrast.
+Brand concept inspired by:
+${industry} industry,
+tone: ${tone}.
+`;
+
+
+    const negativePrompt = `
+text, letters, words, watermark, blurry,
+3d render, shadow, gradient background,
+photorealistic, complex illustration,
+low quality, distorted
+`;
+
 
     const hfResponse = await fetch(
-        "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.HF_API_KEY}`,
-            "Content-Type": "application/json",
-            "x-use-cache": "false"
+      "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.HF_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          inputs: prompt,
+          parameters: {
+            negative_prompt: negativePrompt,
+            guidance_scale: 8.5,
+            num_inference_steps: 40,
+            width: 768,
+            height: 768,
           },
-          body: JSON.stringify({
-            inputs: prompt,
-            options: { wait_for_model: true }
-          }),
-        }
-      );
-
-
-    if (hfResponse.status === 503) {
-      return res.status(503).json({ error: "Model waking up. Retry in 15 seconds." });
-    }
+          options: { wait_for_model: true }
+        }),
+      }
+    );
 
     if (!hfResponse.ok) {
       const errText = await hfResponse.text();
       console.error("HF ERROR:", errText);
-      return res.status(500).json({ error: "HF request failed" });
+      return res.status(500).json({ error: "Logo generation failed" });
     }
 
     const arrayBuffer = await hfResponse.arrayBuffer();
@@ -52,8 +85,8 @@ app.post("/generate-logo", async (req, res) => {
   }
 });
 
-// 🚀 THIS PART IS CRITICAL
 const PORT = 3001;
+
 app.listen(PORT, () => {
-  console.log(`HF Logo server running on port ${PORT}`);
+  console.log(`🚀 Logo server running on http://localhost:${PORT}`);
 });

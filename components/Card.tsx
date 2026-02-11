@@ -19,7 +19,7 @@ export const Card: React.FC<CardProps> = ({ title, icon, children, className = '
   };
 
   return (
-    <div className={`bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col hover:shadow-md transition-shadow relative group ${className}`}>
+    <div className={`bg-white/80 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col hover:shadow-md transition-shadow relative group ${className}`}>
       <div className="flex items-center gap-3 mb-4">
         <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
           {icon}
