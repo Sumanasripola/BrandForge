@@ -1,0 +1,45 @@
+
+import React from 'react';
+
+interface CardProps {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Card: React.FC<CardProps> = ({ title, icon, children, className = '' }) => {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = () => {
+    const textContent = (children as any)?.props?.children || children?.toString() || "";
+    navigator.clipboard.writeText(textContent);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className={`bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col hover:shadow-md transition-shadow relative group ${className}`}>
+      <div className="flex items-center gap-3 mb-4">
+        <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+          {icon}
+        </div>
+        <h3 className="font-bold text-slate-800 text-lg">{title}</h3>
+      </div>
+      <div className="text-slate-600 leading-relaxed flex-grow">
+        {children}
+      </div>
+      <button 
+        onClick={handleCopy}
+        className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-slate-100 rounded-md text-slate-400 hover:text-indigo-600"
+        title="Copy to clipboard"
+      >
+        {copied ? (
+          <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
+        ) : (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+        )}
+      </button>
+    </div>
+  );
+};
