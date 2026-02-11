@@ -163,49 +163,6 @@ BrandForge/
 ├── types.ts           # TypeScript interfaces
 ├── vite.config.ts     # Vite configuration
 └── package.json
-```
-
----
-
-# 🧠 AI Engineering Highlights
-
-## Structured JSON Output Enforcement
-
-Gemini is configured with:
-
-```ts
-responseMimeType: "application/json"
-responseSchema: { ... }
-```
-
-This guarantees:
-- Predictable AI outputs
-- Strong typing
-- Safe frontend rendering
-- No hallucinated structure
-
----
-
-## Prompt Engineering Strategy
-
-BrandForge uses role-based prompting:
-
-> "You are an expert brand strategist, marketing consultant, and creative director..."
-
-This ensures:
-- Strategic reasoning
-- Emotional positioning
-- Market alignment
-- Brand differentiation logic
-
----
-
-## AI Logo Generation
-
-- Stable Diffusion XL model
-- Minimalist vector-style prompts
-- Dynamic brand-based prompt generation
-- Base64 image handling
 
 ---
 
