@@ -188,7 +188,7 @@ This guarantees:
 
 ## Prompt Engineering Strategy
 
-BrandCraft uses role-based prompting:
+BrandForge uses role-based prompting:
 
 > "You are an expert brand strategist, marketing consultant, and creative director..."
 
@@ -217,19 +217,9 @@ This ensures:
 
 ---
 
-# 🚀 Future Improvements
-
-- Export branding kit as PDF
-- Save & compare brand versions
-- Domain availability checker
-- Deployment (Vercel + Render)
-- Rate limit handling & retry strategy
-
----
-
 # 📈 Business Impact
 
-BrandCraft reduces:
+BrandForge reduces:
 - Branding agency costs
 - Time-to-market
 - Strategy planning overhead
