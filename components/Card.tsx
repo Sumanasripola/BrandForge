@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface CardProps {
@@ -19,19 +18,22 @@ export const Card: React.FC<CardProps> = ({ title, icon, children, className = '
   };
 
   return (
-    <div className={`bg-white/80 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col hover:shadow-md transition-shadow relative group ${className}`}>
+    <div 
+      className={`bg-white rounded-2xl border border-slate-100 p-6 flex flex-col transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-2 hover:rotate-1 shadow-[8px_8px_0px_0px_rgba(226,232,240,1)] relative group ${className}`}
+      style={{ perspective: '1000px' }}
+    >
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+        <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600 shadow-inner">
           {icon}
         </div>
-        <h3 className="font-bold text-slate-800 text-lg">{title}</h3>
+        <h3 className="font-bold text-slate-800 text-lg tracking-tight">{title}</h3>
       </div>
       <div className="text-slate-600 leading-relaxed flex-grow">
         {children}
       </div>
       <button 
         onClick={handleCopy}
-        className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-slate-100 rounded-md text-slate-400 hover:text-indigo-600"
+        className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-slate-100 rounded-md text-slate-400 hover:text-indigo-600 bg-white shadow-sm border border-slate-100"
         title="Copy to clipboard"
       >
         {copied ? (

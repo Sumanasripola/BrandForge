@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from './Button';
 import { QuizQuestion } from '../types';
@@ -62,8 +61,11 @@ export const BrandQuiz: React.FC<BrandQuizProps> = ({ onComplete, onClose }) => 
   const progress = ((currentStep + 1) / QUESTIONS.length) * 100;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in duration-300">
+      <div 
+        className="bg-white rounded-3xl shadow-[12px_12px_0px_0px_rgba(79,70,229,0.2)] w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-300 transform rotate-1 hover:rotate-0 transition-transform"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
         <div className="h-2 bg-slate-100 w-full">
           <div 
             className="h-full bg-indigo-600 transition-all duration-500" 
@@ -71,10 +73,10 @@ export const BrandQuiz: React.FC<BrandQuizProps> = ({ onComplete, onClose }) => 
           ></div>
         </div>
         
-        <div className="p-8">
+        <div className="p-8 bg-gradient-to-b from-white to-slate-50">
           <div className="flex justify-between items-center mb-6">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-widest">Step {currentStep + 1} of {QUESTIONS.length}</span>
-            <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors">
+            <span className="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">Step {currentStep + 1} of {QUESTIONS.length}</span>
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors p-1 hover:bg-slate-100 rounded-lg">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
@@ -88,7 +90,7 @@ export const BrandQuiz: React.FC<BrandQuizProps> = ({ onComplete, onClose }) => 
               <button
                 key={opt.value}
                 onClick={() => handleSelect(opt.value)}
-                className="group p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-500 hover:bg-indigo-50 text-left transition-all duration-200"
+                className="group p-5 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-500 hover:bg-indigo-50 text-left transition-all duration-200 hover:shadow-[4px_4px_0px_0px_rgba(79,70,229,1)] hover:-translate-y-1 transform"
               >
                 <div className="font-bold text-slate-800 group-hover:text-indigo-700 mb-1">{opt.label}</div>
                 <div className="text-sm text-slate-500 group-hover:text-indigo-600/80 leading-relaxed">{opt.description}</div>
@@ -97,8 +99,8 @@ export const BrandQuiz: React.FC<BrandQuizProps> = ({ onComplete, onClose }) => 
           </div>
         </div>
 
-        <div className="px-8 py-6 bg-slate-50 text-center border-t border-slate-100">
-          <p className="text-xs text-slate-400 font-medium italic">Your choices help our AI strategist craft a unique identity.</p>
+        <div className="px-8 py-6 bg-slate-100 text-center border-t border-slate-200">
+          <p className="text-xs text-slate-500 font-medium italic">Your choices help our AI strategist craft a unique identity.</p>
         </div>
       </div>
     </div>
