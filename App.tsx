@@ -50,19 +50,24 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-200 text-slate-900 pb-20">
-      {/* Background Pattern for 3D Depth */}
-      <div className="fixed inset-0 bg-gradient-to-br from-indigo-100 via-slate-100 to-purple-100 opacity-50 pointer-events-none"></div>
-      
-      {showQuiz && (
-        <BrandQuiz 
-          onComplete={handleQuizComplete} 
-          onClose={() => setShowQuiz(false)} 
-        />
-      )}
+  <div
+    className="min-h-screen text-slate-100 pb-20 bg-black bg-cover bg-center bg-fixed"
+    style={{
+      backgroundImage: "url('https://img.freepik.com/free-photo/abstract-flowing-neon-wave-background_53876-101942.jpg?semt=ais_hybrid&w=740&q=80')"
+    }}
+  >
+    {/* Dark overlay for readability */}
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-[2px] -z-10"></div>
 
-      {/* Hero Section */}
-      <header className="relative bg-indigo-900 text-white pt-20 pb-32 overflow-hidden">
+    {showQuiz && (
+      <BrandQuiz 
+        onComplete={handleQuizComplete} 
+        onClose={() => setShowQuiz(false)} 
+      />
+    )}
+
+    {/* Hero Section */}
+    <header className="relative bg-indigo-900 text-white pt-20 pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-800 to-indigo-900"></div>
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
         <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
@@ -113,7 +118,7 @@ const App: React.FC = () => {
                     value={inputs.industry}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all shadow-inner bg-slate-50 focus:bg-white"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all shadow-inner bg-white text-slate-900 placeholder:text-slate-400"
                   />
                 </div>
                 <div>
@@ -122,8 +127,7 @@ const App: React.FC = () => {
                     name="tone"
                     value={inputs.tone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all bg-slate-50 focus:bg-white shadow-inner appearance-none cursor-pointer"
-                  >
+className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all bg-white text-slate-900 shadow-inner appearance-none cursor-pointer"                  >
                     {Object.values(Tone).map(t => (
                       <option key={t} value={t}>{t}</option>
                     ))}
@@ -140,8 +144,7 @@ const App: React.FC = () => {
                   value={inputs.targetAudience}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all shadow-inner bg-slate-50 focus:bg-white"
-                />
+className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all shadow-inner bg-white text-slate-900 placeholder:text-slate-400"                />
               </div>
 
               <div>
@@ -153,8 +156,7 @@ const App: React.FC = () => {
                   value={inputs.businessDescription}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none shadow-inner bg-slate-50 focus:bg-white"
-                ></textarea>
+className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none shadow-inner bg-white text-slate-900 placeholder:text-slate-400"                ></textarea>
               </div>
 
               {inputs.personalitySummary && (
@@ -453,12 +455,10 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="mt-20 border-t-4 border-slate-200 py-16 text-center text-slate-400 bg-white shadow-inner">
-        <div className="container mx-auto px-4">
+        <footer className="mt-20 border-t border-white/10 py-16 text-center text-slate-400 bg-black/40 backdrop-blur-md shadow-inner">        <div className="container mx-auto px-4">
           <div className="flex justify-center items-center gap-2 mb-6">
             <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-[0_4px_0px_0px_rgba(67,56,202,1)]">B</div>
-            <span className="font-black text-slate-900 text-2xl tracking-tighter uppercase">BrandCraft</span>
-          </div>
+<span className="font-black text-white text-2xl tracking-tighter uppercase">BrandCraft</span>          </div>
           <p className="mb-6 max-w-sm mx-auto text-sm leading-relaxed">&copy; {new Date().getFullYear()} Startup Branding Automation Engine. Built for the next generation of founders.</p>
         </div>
       </footer>
